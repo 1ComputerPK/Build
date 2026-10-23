@@ -89,7 +89,7 @@ jobs:
            mtools rsync grub-common e2fsprogs lvm2 pv wget gettext gpgv musl \
            shim-signed grub-efi-amd64-bin grub-efi-amd64-signed musl-tools gcc-multilib
 
-          sudo -E bash ./minios-cmd -d ${{ matrix.release }} -a ${{ matrix.arch }} -de ${{ matrix.de } \
+          sudo -E bash ./minios-cmd -d ${{ matrix.release }} -a ${{ matrix.arch }} -de ${{ matrix.de }} \
            -pv standard -c zstd -l en_US -tz "${TZ}" -ib dracut
 
       - name: Upload | ISO
