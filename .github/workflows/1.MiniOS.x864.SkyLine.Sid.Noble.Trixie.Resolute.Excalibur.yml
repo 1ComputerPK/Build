@@ -28,13 +28,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        release: [ sid, noble, trixie, bookworm, resolute, excalibur ]
+        release: [ sid, trixie, resolute, excalibur ]
         board: [ uefi-x86 ]
         arch: [ amd64 ]
+        de: [ xfce ]
         include:
-          #- { release: trixie, arch: i386, board: uefi-x86 }
-          - { release: bookworm, arch: i386, board: uefi-x86 }
-          #- { release: excalibur, arch: i386, board: uefi-x86 }
+          - { release: noble, arch: amd64, de: cinnamon, board: uefi-x86 }
+          - { release: bookworm, arch: amd64, de: cinnamon, board: uefi-x86 }
+          - { release: bookworm, arch: i386, de: cinnamon, board: uefi-x86 }
+          #- { release: excalibur, arch: i386, de: xfce, board: uefi-x86 }
+          #- { release: trixie, arch: i386, de: xfce, board: uefi-x86 }
 
     steps:
       - name: Prepare | Init & LVM
@@ -86,7 +89,7 @@ jobs:
            mtools rsync grub-common e2fsprogs lvm2 pv wget gettext gpgv musl \
            shim-signed grub-efi-amd64-bin grub-efi-amd64-signed musl-tools gcc-multilib
 
-          sudo -E bash ./minios-cmd -d ${{ matrix.release }} -a ${{ matrix.arch }} -de cinnamon \
+          sudo -E bash ./minios-cmd -d ${{ matrix.release }} -a ${{ matrix.arch }} -de ${{ matrix.de } \
            -pv standard -c zstd -l en_US -tz "${TZ}" -ib dracut
 
       - name: Upload | ISO
