@@ -36,8 +36,8 @@ jobs:
           - { release: noble, arch: amd64, de: lxqt, board: uefi-x86 }
           - { release: bookworm, arch: amd64, de: lxqt, board: uefi-x86 }
           - { release: bookworm, arch: i386, de: lxqt, board: uefi-x86 }
-          - { release: excalibur, arch: i386, de: lxqt, board: uefi-x86 }
-          - { release: trixie, arch: i386, de: lxqt, board: uefi-x86 }
+          #- { release: excalibur, arch: i386, de: lxqt, board: uefi-x86 }
+          #- { release: trixie, arch: i386, de: lxqt, board: uefi-x86 }
 
     steps:
       - name: Prepare | Init & LVM
